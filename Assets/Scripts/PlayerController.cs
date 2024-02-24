@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 10f;
 
     [SerializeField]
     private float jumpPower = 100f;
@@ -79,7 +78,7 @@ public class PlayerController : MonoBehaviour
         //JUMP INPUT
         if (Input.GetKeyDown(KeyCode.Space)) //set the timer of jumping
         {
-            Debug.Log("Space recorded");
+            //Debug.Log("Space recorded");
             timeSinceJump = jumpTimeBuffer;
         }
     }
@@ -91,11 +90,17 @@ public class PlayerController : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        //target speed is Vector3 in which to move in
-        Vector3 targetVel = new Vector3(horizontalInput, 0f, verticalInput).normalized * (isGrounded ? maxSpeedGrounded : maxSpeedAir);
+        //input vel is Vector3 in which to move based on the inputs given
+        Vector3 inputVel = new Vector3(horizontalInput, 0f, verticalInput).normalized * (isGrounded ? maxSpeedGrounded : maxSpeedAir);
+
+        //target vel transforms the input vel vector so that it is relative to the transform.forward
+        Vector3 targetVel = transform.TransformDirection(inputVel);
+
+        //Debug.Log("Target velocity: " + targetVel);
 
         //magnitude of difference of target speed - current speed
-        float speedDiff = Mathf.Clamp((targetVel - new Vector3(rb.velocity.x, 0f, rb.velocity.z)).magnitude, -maxSpeedGrounded, maxSpeedGrounded);
+        float speedDiff = Mathf.Clamp((targetVel.magnitude - (new Vector3(rb.velocity.x, 0f, rb.velocity.z)).magnitude),
+            -maxSpeedGrounded, maxSpeedGrounded);
 
         //acceleration rate
         float accelRate = Mathf.Abs(targetVel.magnitude) > 0.05f ? acceleration : deceleration;
@@ -116,11 +121,19 @@ public class PlayerController : MonoBehaviour
 
         Collider[] colliders = Physics.OverlapBox(transform.position + centerYOffset * Vector3.up, new Vector3(boxWidth, boxHeight, boxDepth));
 
-        if (colliders.Length > 0)
+        //foreach(Collider col in colliders)
+        //{
+        //    Debug.Log(col.gameObject);
+        //}
+
+        if (colliders.Length > 1) //collider will always be in contact with player's collider, so we check if > 1 instead of 0
         {
             isGrounded = true;
             isJumping = false;
             timeSinceGrounded = coyoteTimeBuffer;
+        } else
+        {
+            isGrounded = false;
         }
 
         if (!isJumping && timeSinceJump > 0 && timeSinceGrounded > 0)
@@ -137,6 +150,9 @@ public class PlayerController : MonoBehaviour
         {
             rb.AddForce(new Vector3(0, -normalGravity, 0), ForceMode.Force);
         }
+
+        //UPDATE ROTATION TO MATCH CAMERA LOOK
+        
 
         
 
