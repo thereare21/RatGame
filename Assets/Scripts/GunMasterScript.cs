@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GunMasterScript : MonoBehaviour
 {
     public Animator gunAnimator;
+
+    public Slider slider;
+    public GameObject sliderBackground;
+    public GameObject sliderFill;
+
+
 
     public enum GunMode
     {
@@ -48,6 +55,8 @@ public class GunMasterScript : MonoBehaviour
 
         gunModes = new GunModeInterface[3];
         gunModes[0] = GetComponent<Pistol>();
+
+        slider.value = 0;
 
         
     }
@@ -103,6 +112,8 @@ public class GunMasterScript : MonoBehaviour
 
         GunModeInterface currentGunMode = gunModes[(int)mode];
 
+
+        //FIRE IN THE HOLEEEEE
         if (Input.GetButtonDown("Fire1"))
         {
             
@@ -119,6 +130,28 @@ public class GunMasterScript : MonoBehaviour
                 //handle invalid firing
             }
         }
+
+        //update chargeup UI
+
+        
+        Color selectedColor = colors[(int)mode];
+        selectedColor.a = 1f;
+        //float brightFactor = 5f;
+        //Color bgColor = new Color(selectedColor.r + brightFactor,
+        //    selectedColor.g + brightFactor,
+        //    selectedColor.b + brightFactor);
+
+        //sliderBackground.GetComponent<Image>().color = bgColor;
+
+        Image sliderFillImage = sliderFill.GetComponent<Image>();
+
+        sliderFillImage.color = selectedColor;
+
+        slider.value = 1 - (currentGunMode.cooldown / currentGunMode.maxCooldown);
+
+        Debug.Log("slider value: " + slider.value);
+        
+
 
 
     }

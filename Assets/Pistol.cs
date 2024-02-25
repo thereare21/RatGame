@@ -7,6 +7,9 @@ public class Pistol : MonoBehaviour, GunModeInterface
 
     public GameObject pistolPellet;
 
+    [SerializeField]
+    private float pistolMaxCooldown = 0.5f;
+
     [Header("Bullet Physics")]
     public float bulletSpeed = 15f;
 
@@ -27,7 +30,7 @@ public class Pistol : MonoBehaviour, GunModeInterface
     void Start()
     {
         cooldown = 0f;
-        maxCooldown = 0.5f;
+        maxCooldown = pistolMaxCooldown;
     }
 
     // Update is called once per frame
