@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PelletTravel : MonoBehaviour
 {
+    public float timeTravelling;
+
     private bool destroyable = false;
 
     private void Start()
@@ -16,6 +18,8 @@ public class PelletTravel : MonoBehaviour
     {
         yield return new WaitForSeconds(0.05f);
         destroyable = true;
+        yield return new WaitForSeconds(timeTravelling);
+        Destroy(gameObject);
     }
 
     

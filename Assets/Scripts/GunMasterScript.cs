@@ -55,6 +55,7 @@ public class GunMasterScript : MonoBehaviour
 
         gunModes = new GunModeInterface[3];
         gunModes[0] = GetComponent<Pistol>();
+        gunModes[1] = GetComponent<Shotgun>();
 
         slider.value = 0;
 

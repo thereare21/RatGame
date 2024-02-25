@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6624021087739296624}
   - component: {fileID: 1833621392511164285}
   m_Layer: 0
-  m_Name: PistolPellet
+  m_Name: ShotgunPellet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1163048de5a4e430b8b52d0d6281725b, type: 2}
+  - {fileID: 2100000, guid: a79a31bd2cd7148e2842ef96f9398391, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646634dfc15064facb1cdbbb642a658f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeTravelling: 3
+  timeTravelling: 0.2
