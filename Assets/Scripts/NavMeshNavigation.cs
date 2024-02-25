@@ -14,7 +14,7 @@ public class NavMeshNavigation : MonoBehaviour
             Debug.LogError("Target object is not assigned to NavMeshNavigation script!");
         }
 
-        navMeshAgent.baseOffset = 1f;
+        navMeshAgent.baseOffset = 0.6f;
     }
 
     void Update()
