@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Pistol : MonoBehaviour, GunModeInterface
 {
+
+    public GameObject pistolPellet;
+
+    [Header("Bullet Physics")]
+    public float bulletSpeed = 15f;
+
     public float cooldown { get; set; }
     public float maxCooldown { get; set; }
 
@@ -11,6 +17,9 @@ public class Pistol : MonoBehaviour, GunModeInterface
     public void fireInTheHole()
     {
         Debug.Log("fire in the hole!");
+
+        FireBullets();
+
         cooldown = maxCooldown;
     }
 
@@ -26,6 +35,15 @@ public class Pistol : MonoBehaviour, GunModeInterface
     {
         cooldown = Mathf.Max(cooldown - Time.deltaTime, 0f);
 
+    }
+
+    void FireBullets()
+    {
+        GameObject pellet = Instantiate(pistolPellet, transform.GetChild(0).position, Quaternion.identity);
+
+
+
+        pellet.GetComponent<Rigidbody>().AddForce(bulletSpeed * transform.forward, ForceMode.VelocityChange);
     }
 
     
