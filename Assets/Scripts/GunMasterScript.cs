@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GunMasterScript : MonoBehaviour
 {
+    public Animator gunAnimator;
 
     public enum GunMode
     {
@@ -44,6 +45,9 @@ public class GunMasterScript : MonoBehaviour
 
         particleMaterial = gunObject.GetComponent<ParticleSystem>().GetComponent<Renderer>().material;
         particleMaterial.color = colors[(int)mode];
+
+        gunModes = new GunModeInterface[3];
+        gunModes[0] = GetComponent<Pistol>();
 
         
     }
@@ -96,6 +100,34 @@ public class GunMasterScript : MonoBehaviour
 
             particleMaterial.color = colors[(int)mode];
         }
+
+        GunModeInterface currentGunMode = gunModes[(int)mode];
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            
+            if (currentGunMode.cooldown < 0.02f)
+            {
+                currentGunMode.fireInTheHole();
+                gunAnimator.SetTrigger("FireInTheHole");
+                Debug.Log("fired in the hole");
+                StartCoroutine(ShootAnimation());
+                
+            }
+            else
+            {
+                //handle invalid firing
+            }
+        }
+
+
+    }
+
+    IEnumerator ShootAnimation()
+    {
+        yield return new WaitForSeconds(0.2f);
+        Debug.Log("return to idle");
+        gunAnimator.SetTrigger("ReturnToIdle");
 
     }
 }
