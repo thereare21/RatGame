@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CheeseBehavior : MonoBehaviour
 {
@@ -17,11 +18,16 @@ public class CheeseBehavior : MonoBehaviour
 
     private float damageTimer;
 
+    private Slider cheeseSlider;
+
     // Start is called before the first frame update
     void Start()
     {
         cheeseHealth = startingCheeseHealth;
         damageTimer = 0f;
+
+        cheeseSlider = GetComponentInChildren<Slider>();
+        cheeseSlider.value = (cheeseHealth / startingCheeseHealth);
 
     }
 
@@ -43,7 +49,18 @@ public class CheeseBehavior : MonoBehaviour
         if (cheeseHealth <= 0)
         {
             //game over handle
-            Debug.Log("GAME OVER THE RATS HAVE WON THE RATS HAVE WON");
+            //Debug.Log("GAME OVER THE RATS HAVE WON THE RATS HAVE WON");
+        }
+
+        cheeseSlider.value = cheeseHealth / startingCheeseHealth;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        if (player != null)
+        {
+            RectTransform canvas = GetComponentInChildren<RectTransform>();
+
+            canvas.LookAt(player.transform);
         }
 
 

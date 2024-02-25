@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: -8011001294534589066}
   - component: {fileID: 2228117498109824678}
   - component: {fileID: 6698744770018321456}
+  - component: {fileID: 4334955478772415562}
   m_Layer: 0
   m_Name: Labrat
   m_TagString: Rat
@@ -170,3 +171,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetObject: {fileID: 0}
+--- !u!114 &4334955478772415562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6480610789642280540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f13572dc4464bf7ad50a641d60acf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

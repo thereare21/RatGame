@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bullet
   - Rat
+  - Cheese
   layers:
   - Default
   - TransparentFX

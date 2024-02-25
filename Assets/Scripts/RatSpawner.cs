@@ -51,7 +51,7 @@ public class RatSpawner : MonoBehaviour
             points[i] = transform.GetChild(i).GetComponent<Transform>();
         }
 
-        points = transform.GetComponentsInChildren<Transform>();
+        //points = transform.GetComponentsInChildren<Transform>();
 
         //initialize the list of bool
         activatedPoints = new bool[points.Length];
@@ -64,6 +64,8 @@ public class RatSpawner : MonoBehaviour
 
         timeSinceLastRat = 0;
         timeSinceLastPointSpawn = 0;
+
+        Debug.Log("Points size: " + points.Length);
         
     }
 

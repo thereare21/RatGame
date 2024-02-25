@@ -9,6 +9,9 @@ public class NavMeshNavigation : MonoBehaviour
     void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        targetObject = GameObject.FindGameObjectWithTag("Cheese").transform;
+
         if (targetObject == null)
         {
             Debug.LogError("Target object is not assigned to NavMeshNavigation script!");
