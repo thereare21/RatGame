@@ -93,14 +93,14 @@ public class PlayerController : MonoBehaviour
         //input vel is Vector3 in which to move based on the inputs given
         Vector3 inputVel = new Vector3(horizontalInput, 0f, verticalInput).normalized * (isGrounded ? maxSpeedGrounded : maxSpeedAir);
 
-        Debug.Log("Input: " + inputVel);
+        //Debug.Log("Input: " + inputVel);
 
         //target vel transforms the input vel vector so that it is relative to the transform.forward
         Vector3 targetVel = transform.TransformDirection(inputVel);
 
-        Debug.Log("Target velocity magnitude: " + targetVel.magnitude);
+        //Debug.Log("Target velocity magnitude: " + targetVel.magnitude);
 
-        Debug.Log("Target velocity: " + targetVel);
+        //Debug.Log("Target velocity: " + targetVel);
 
         //magnitude of difference of target speed - current speed
         //float speedDiff = targetVel.magnitude - (new Vector3(rb.velocity.x, 0f, rb.velocity.z)).magnitude;

@@ -8,6 +8,8 @@ public class RatBehavior : MonoBehaviour
     private Animator animator;
     private GameObject cheese;
 
+    private GameObject scoreManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,8 @@ public class RatBehavior : MonoBehaviour
         {
             Debug.Log("rat animator or cheese object not found");
         }
+
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
     }
 
     // Update is called once per frame
@@ -37,6 +41,7 @@ public class RatBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet"))
         {
             Destroy(gameObject);
+            scoreManager.GetComponent<ScoreManager>().ratsKilled += 1;
 
             //increment score
            //ScoreManager.ratsKilled += 1;
