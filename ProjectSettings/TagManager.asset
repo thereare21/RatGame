@@ -8,6 +8,7 @@ TagManager:
   - Rat
   - Cheese
   - ScoreManager
+  - SoundManager
   layers:
   - Default
   - TransparentFX

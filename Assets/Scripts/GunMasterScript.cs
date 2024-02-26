@@ -11,6 +11,8 @@ public class GunMasterScript : MonoBehaviour
     public GameObject sliderBackground;
     public GameObject sliderFill;
 
+    public AudioSource newWeaponSFX;
+
 
 
     public enum GunMode
@@ -164,7 +166,13 @@ public class GunMasterScript : MonoBehaviour
 
         if (scoreManager.ratsKilled > 50)
         {
+            if (modesUnlocked != 1 && !newWeaponSFX.isPlaying)
+            {
+                newWeaponSFX.Play();
+            }
             modesUnlocked = 1;
+            
+            
         }
         
 

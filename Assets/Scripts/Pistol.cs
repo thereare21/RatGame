@@ -16,6 +16,8 @@ public class Pistol : MonoBehaviour, GunModeInterface
     public float cooldown { get; set; }
     public float maxCooldown { get; set; }
 
+    public AudioSource pistolSound;
+
 
     public void fireInTheHole()
     {
@@ -24,6 +26,8 @@ public class Pistol : MonoBehaviour, GunModeInterface
         FireBullets();
 
         cooldown = maxCooldown;
+
+        pistolSound.Play();
     }
 
     // Start is called before the first frame update

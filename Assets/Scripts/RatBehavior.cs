@@ -10,6 +10,8 @@ public class RatBehavior : MonoBehaviour
 
     private GameObject scoreManager;
 
+    private AudioSource ratKillSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,8 @@ public class RatBehavior : MonoBehaviour
         }
 
         scoreManager = GameObject.FindGameObjectWithTag("ScoreManager");
+
+        ratKillSFX = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -40,6 +44,7 @@ public class RatBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Bullet"))
         {
+            SoundManager.PlayRatKill(GetComponent<AudioSource>());
             Destroy(gameObject);
             scoreManager.GetComponent<ScoreManager>().ratsKilled += 1;
 
@@ -47,4 +52,5 @@ public class RatBehavior : MonoBehaviour
            //ScoreManager.ratsKilled += 1;
         }
     }
+
 }

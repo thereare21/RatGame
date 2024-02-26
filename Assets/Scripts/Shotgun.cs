@@ -17,6 +17,8 @@ public class Shotgun : MonoBehaviour, GunModeInterface
     public float cooldown { get; set; }
     public float maxCooldown { get; set; }
 
+    public AudioSource shotgunSFX;
+
 
     public void fireInTheHole()
     {
@@ -25,6 +27,8 @@ public class Shotgun : MonoBehaviour, GunModeInterface
         FireBullets();
 
         cooldown = maxCooldown;
+
+        shotgunSFX.Play();
     }
 
     // Start is called before the first frame update
