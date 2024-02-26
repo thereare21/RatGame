@@ -43,7 +43,7 @@ public class CheeseBehavior : MonoBehaviour
         {
             cheeseHealth -= damagePerRat * ScanForRats();
             damageTimer = 0f;
-            Debug.Log("cheese health: " + cheeseHealth);
+            //Debug.Log("cheese health: " + cheeseHealth);
         }
 
         if (cheeseHealth <= 0)

@@ -93,23 +93,36 @@ public class PlayerController : MonoBehaviour
         //input vel is Vector3 in which to move based on the inputs given
         Vector3 inputVel = new Vector3(horizontalInput, 0f, verticalInput).normalized * (isGrounded ? maxSpeedGrounded : maxSpeedAir);
 
+        Debug.Log("Input: " + inputVel);
+
         //target vel transforms the input vel vector so that it is relative to the transform.forward
         Vector3 targetVel = transform.TransformDirection(inputVel);
 
-        //Debug.Log("Target velocity: " + targetVel);
+        Debug.Log("Target velocity magnitude: " + targetVel.magnitude);
+
+        Debug.Log("Target velocity: " + targetVel);
 
         //magnitude of difference of target speed - current speed
+        //float speedDiff = targetVel.magnitude - (new Vector3(rb.velocity.x, 0f, rb.velocity.z)).magnitude;
+
+        /*
         float speedDiff = Mathf.Clamp((targetVel.magnitude - (new Vector3(rb.velocity.x, 0f, rb.velocity.z)).magnitude),
             -maxSpeedGrounded, maxSpeedGrounded);
+
+        Debug.Log("Speed diff: " + speedDiff);
 
         //acceleration rate
         float accelRate = Mathf.Abs(targetVel.magnitude) > 0.05f ? acceleration : deceleration;
 
         //magnitude of the actual movement
-        float movement = speedDiff * accelRate;
+        float movement = Mathf.Abs(speedDiff * accelRate);
+
+        Debug.Log("Movement: " + movement);
+
+        Debug.Log("Final force: " + movement * targetVel.normalized);*/
 
         //add the force in the direction of the target velocity
-        rb.AddForce(movement * targetVel.normalized);
+        rb.AddForce(targetVel);
 
 
         //TIMERS FOR JUMP BUFFER AND COYOTE TIME

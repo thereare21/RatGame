@@ -150,7 +150,7 @@ public class GunMasterScript : MonoBehaviour
 
         slider.value = 1 - (currentGunMode.cooldown / currentGunMode.maxCooldown);
 
-        Debug.Log("slider value: " + slider.value);
+        //ebug.Log("slider value: " + slider.value);
         
 
 
