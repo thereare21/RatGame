@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CheeseBehavior : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class CheeseBehavior : MonoBehaviour
     public float damagePerRat = 0.5f;
 
     public float damageTimeInterval = 1f;
+
+    public float maxDamage = 4f;
 
     [SerializeField]
     private float scanRadius = 2f;
@@ -41,7 +44,7 @@ public class CheeseBehavior : MonoBehaviour
 
         if (damageTimer >= damageTimeInterval)
         {
-            cheeseHealth -= damagePerRat * ScanForRats();
+            cheeseHealth -= Mathf.Min(maxDamage, damagePerRat * ScanForRats());
             damageTimer = 0f;
             //Debug.Log("cheese health: " + cheeseHealth);
         }
@@ -50,6 +53,7 @@ public class CheeseBehavior : MonoBehaviour
         {
             //game over handle
             //Debug.Log("GAME OVER THE RATS HAVE WON THE RATS HAVE WON");
+            SceneManager.LoadScene("GameOver");
         }
 
         cheeseSlider.value = cheeseHealth / startingCheeseHealth;

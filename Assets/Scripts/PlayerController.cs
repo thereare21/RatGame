@@ -69,6 +69,8 @@ public class PlayerController : MonoBehaviour
         rb.freezeRotation = true;
         isGrounded = false;
         isJumping = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     // Update is called once per frame

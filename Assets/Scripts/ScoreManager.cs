@@ -7,7 +7,16 @@ using TMPro;
 public class ScoreManager : MonoBehaviour
 {
 
-    public int ratsKilled { get => ratsKilled; set => PlayIncrementAnimation(); }
+    private int _ratsKilled;
+
+    public int ratsKilled {
+        get => _ratsKilled;
+        set
+        {
+            _ratsKilled = value;
+            PlayIncrementAnimation();
+        }
+    }
 
     public GameObject scoreUI;
 

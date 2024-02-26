@@ -39,6 +39,8 @@ public class GunMasterScript : MonoBehaviour
 
     private ParticleSystem gunParticleSystem;
     private Material particleMaterial;
+
+    private ScoreManager scoreManager;
     
 
     
@@ -58,6 +60,9 @@ public class GunMasterScript : MonoBehaviour
         gunModes[1] = GetComponent<Shotgun>();
 
         slider.value = 0;
+
+        scoreManager = GameObject.FindGameObjectWithTag("ScoreManager").GetComponent<ScoreManager>();
+
 
         
     }
@@ -151,6 +156,16 @@ public class GunMasterScript : MonoBehaviour
         slider.value = 1 - (currentGunMode.cooldown / currentGunMode.maxCooldown);
 
         //ebug.Log("slider value: " + slider.value);
+
+        //check if unlock next mode
+
+
+        //if score is over certain amount, activate bomb (if implemented)
+
+        if (scoreManager.ratsKilled > 50)
+        {
+            modesUnlocked = 1;
+        }
         
 
 
